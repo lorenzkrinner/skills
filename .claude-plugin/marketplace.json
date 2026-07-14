@@ -1,0 +1,22 @@
+{
+  "name": "lorenzkrinner",
+  "owner": {
+    "name": "Lorenz Krinner",
+    "url": "https://github.com/lorenzkrinner"
+  },
+  "description": "Lorenz Krinner's personal agent skills.",
+  "plugins": [
+    {
+      "name": "lorenzkrinner-skills",
+      "source": "./",
+      "description": "Lorenz Krinner's personal agent skills.",
+      "category": "engineering",
+      "keywords": [
+        "engineering",
+        "skills",
+        "planning"
+      ]
+    }
+  ]
+}
+

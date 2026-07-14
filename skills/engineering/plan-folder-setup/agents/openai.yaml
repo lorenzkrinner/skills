@@ -1,0 +1,4 @@
+display_name: Plan Folder Setup
+short_description: Standard repo plan folders
+default_prompt: Create or update a repository plan folder using the standard plans/<slug>/ structure.
+

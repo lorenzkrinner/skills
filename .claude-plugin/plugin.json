@@ -1,0 +1,20 @@
+{
+  "name": "lorenzkrinner-skills",
+  "version": "0.1.0",
+  "description": "Lorenz Krinner's personal agent skills.",
+  "author": {
+    "name": "Lorenz Krinner",
+    "url": "https://github.com/lorenzkrinner"
+  },
+  "repository": "https://github.com/lorenzkrinner/Skills",
+  "license": "MIT",
+  "keywords": [
+    "engineering",
+    "skills",
+    "planning"
+  ],
+  "skills": [
+    "./skills/engineering/plan-folder-setup"
+  ]
+}
+
