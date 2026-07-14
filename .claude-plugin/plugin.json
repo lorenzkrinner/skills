@@ -6,7 +6,7 @@
     "name": "Lorenz Krinner",
     "url": "https://github.com/lorenzkrinner"
   },
-  "repository": "https://github.com/lorenzkrinner/Skills",
+  "repository": "https://github.com/lorenzkrinner/skills",
   "license": "MIT",
   "keywords": [
     "engineering",
@@ -17,4 +17,3 @@
     "./skills/engineering/plan-folder-setup"
   ]
 }
-

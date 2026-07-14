@@ -1,10 +1,8 @@
-# Skills
+# skills
 
-[![skills.sh](https://skills.sh/b/lorenzkrinner/Skills)](https://skills.sh/lorenzkrinner/Skills)
+[![skills.sh](https://skills.sh/b/lorenzkrinner/skills)](https://skills.sh/lorenzkrinner/skills)
 
 Personal agent skills.
-
-This repository follows the same broad layout as [mattpocock/skills](https://github.com/mattpocock/skills): reusable skills live under `skills/`, with optional agent metadata bundled next to each `SKILL.md`.
 
 ## Skills
 
@@ -25,4 +23,3 @@ Link bundled skills into local agent skill directories:
 ```bash
 ./scripts/link-skills.sh
 ```
-

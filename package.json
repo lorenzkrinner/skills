@@ -5,8 +5,7 @@
   "description": "Lorenz Krinner's personal agent skills.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lorenzkrinner/Skills"
+    "url": "https://github.com/lorenzkrinner/skills"
   },
   "license": "MIT"
 }
-
