@@ -5,12 +5,18 @@ Use these as managed sections. Preserve unrelated content and adapt labels and p
 ## `AGENTS.md`
 
 ```markdown
+# AGENTS.md
+
+## Product Description
+
+<add description>
+
 ## Workflow
 
 - Use tickets as the source of truth for planned work.
 - Merge ticket branches into `development`.
 - Merge `development` into `main` only after tests and live verification pass.
-- Run the `consolidate` skill before integration.
+- Use the `consolidate` skill before integration.
 
 ## Work Log
 
@@ -25,23 +31,23 @@ Update the relevant architecture document when a change affects a documented flo
 
 ## Project Context
 
-See `CONTEXT.md` for domain terms and system boundaries.
+- Domain terms and system boundaries: `CONTEXT.md`
 
 ## Agent Workflow
 
-See `docs/agents/workflow.md` for the delivery workflow.
+- Delivery workflow: `docs/agents/workflow.md`
 
-## Agent Configuration
+## Agent Skills
 
-See `docs/agents/issue-tracker.md` for the issue tracker.
-See `docs/agents/triage-labels.md` for ticket states.
-See `docs/agents/domain.md` for domain documentation.
+- Issue tracker: `docs/agents/issue-tracker.md`
+- Ticket states: `docs/agents/triage-labels.md`
+- Domain documentation: `docs/agents/domain.md`
 ```
 
 When Entire is enabled, add this line under `## Agent Workflow`:
 
 ```markdown
-See `docs/agents/session-tracking.md` for Entire session tracking.
+- Entire session tracking: `docs/agents/session-tracking.md`
 ```
 
 Omit Matt Pocock pointers for files that its setup did not create.
@@ -172,42 +178,28 @@ Architecture documents describe the current system. ADRs explain why durable dec
 
 ## `README.md`
 
-Add or update concise sections. Preserve existing setup and product documentation.
-
-```markdown
-## Branches
-
-Ticket branches merge into `development`. `development` merges into `main` after tests and live verification.
-
-## Architecture
-
-Read `docs/architecture/overview.md` for the system overview. Detailed flows live under `docs/architecture/`.
-
-## Agent Workflow
-
-Repository instructions live in `AGENTS.md`.
-```
-
-When Entire is enabled, add:
+Preserve useful existing product and setup content. Add missing managed sections without copying architecture or workflow documentation into the README:
 
 ````markdown
-## Session Tracking
+# README.md
 
-This repository uses Entire to track agent sessions.
+## Product Description
 
-Install the stable CLI on macOS or Linux:
+<add description>
+
+## Setup
+
+### Set Up Entire
+
+This repository uses Entire for agent session tracking. Install the stable CLI before working with an agent.
+
+On macOS or Linux:
 
 ```bash
 curl -fsSL https://entire.io/install.sh | bash
 ```
 
 On Windows, follow the current Scoop installation instructions in the official Entire documentation.
-
-Check the repository setup:
-
-```bash
-entire status
-```
-
-See `docs/agents/session-tracking.md` for repository-specific details.
 ````
+
+Add `## Setup` and `### Set Up Entire` only when Entire setup is selected. Do not add README sections for branches, architecture, agent workflow, or session-tracking details; those belong in `docs/` and `AGENTS.md`.

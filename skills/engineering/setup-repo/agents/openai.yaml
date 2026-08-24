@@ -1,7 +1,0 @@
-interface:
-  display_name: "Setup Repo"
-  short_description: "Set up repository workflow and tooling"
-  default_prompt: "Use $setup-repo to configure this repository."
-
-policy:
-  allow_implicit_invocation: false
