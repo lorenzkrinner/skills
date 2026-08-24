@@ -73,7 +73,7 @@ Read [references/repository-files.md](references/repository-files.md). Its `AGEN
 6. Update the relevant architecture document when the setup changes a documented flow.
 7. Add or update the concise `README.md` product description and optional Entire setup section.
 
-Do not paraphrase the required `AGENTS.md` headings. Do not retain Matt Pocock's nested `### Issue tracker`, `### Triage labels`, or `### Domain docs` blocks. Convert their information into the flat pointer list under `## Agent Skills`. Add only pointers to files that exist.
+Do not paraphrase the required `AGENTS.md` headings. Do not retain Matt Pocock's `## Agent skills` section. Convert its information into pointer bullets under the relevant `## Sources of Truth` subsection. Add only pointers to files that exist.
 
 Keep `<add description>` exactly under `## Product Description`. Do not infer, generate, or substitute a product description during setup.
 
@@ -108,7 +108,8 @@ Check every completion criterion:
 - Required workflow skills are installed.
 - `AGENTS.md` starts with `# AGENTS.md`, followed by `## Product Description`, and uses the required Lorenz section order.
 - `AGENTS.md` contains `<add description>` exactly under `## Product Description`.
-- `AGENTS.md` uses flat pointer lists under `## Project Context`, `## Agent Workflow`, and `## Agent Skills`.
+- `AGENTS.md` has one `## Sources of Truth` section with `### Architecture`, `### Product Context`, and `### Agent Workflow` subsections.
+- Each source-of-truth subsection uses a flat pointer list.
 - `AGENTS.md` contains no nested Matt Pocock configuration headings.
 - `AGENTS.md` contains no extra headings outside the authoritative structure.
 - `AGENTS.md` points directly to every architecture document.

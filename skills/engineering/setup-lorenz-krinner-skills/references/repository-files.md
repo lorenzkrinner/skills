@@ -32,29 +32,28 @@ Keep `<add description>` exactly. Product description work happens after reposit
 
 Maintain `WORKLOG.md` during implementation. If it is missing, create it with the required headings. Follow `docs/agents/workflow.md#work-log`.
 
-## Architecture
+## Sources of Truth
+
+### Architecture
 
 - System overview: `docs/architecture/overview.md`
 - [Verified flow]: `docs/architecture/<flow>.md`
 
 Update the relevant architecture document when a change affects a documented flow. Add every new architecture document to this list.
 
-## Project Context
+### Product Context
 
-- Domain terms and system boundaries: `CONTEXT.md`
+- Domain model: `CONTEXT.md`
+- Domain documentation rules: `docs/agents/domain.md`
 
-## Agent Workflow
+### Agent Workflow
 
 - Delivery workflow: `docs/agents/workflow.md`
-
-## Agent Skills
-
 - Issue tracker: `docs/agents/issue-tracker.md`
 - Ticket states: `docs/agents/triage-labels.md`
-- Domain documentation: `docs/agents/domain.md`
 ```
 
-When Entire is enabled, add this line under `## Agent Workflow`:
+When Entire is enabled, add this line under `### Agent Workflow`:
 
 ```markdown
 - Entire session tracking: `docs/agents/session-tracking.md`
