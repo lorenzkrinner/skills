@@ -1,8 +1,18 @@
 # Repository Files
 
-Use these as managed sections. Preserve unrelated content and adapt labels and paths to the repository. Do not add a pointer for a file that does not exist.
+Use these as managed structures. Preserve unrelated content in files other than root `AGENTS.md`. Do not add a pointer for a file that does not exist.
 
 ## `AGENTS.md`
+
+This complete file structure is authoritative. Use the exact title, heading names, heading order, prose, and flat pointer-list shape below. Replace root `AGENTS.md` after Matt Pocock's setup finishes. Do not preserve extra or nested headings.
+
+The only variable content is:
+
+- Architecture pointer bullets for verified architecture documents
+- Pointers for agent files that actually exist
+- The optional Entire pointer
+
+Keep `<add description>` exactly. Product description work happens after repository setup.
 
 ```markdown
 # AGENTS.md

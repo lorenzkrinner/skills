@@ -6,7 +6,7 @@ disable-model-invocation: true
 
 # Setup Lorenz Krinner Skills
 
-Set up the current Git repository. Preserve existing project instructions and conventions unless they conflict with an explicit requirement below.
+Set up the current Git repository. Preserve existing project instructions and conventions outside the files this skill explicitly manages. The complete root `AGENTS.md` structure is managed by this skill.
 
 ## 1. Inspect
 
@@ -63,15 +63,19 @@ Run the installed `setup-matt-pocock-skills` workflow. Let that skill own issue 
 
 ## 4. Configure Repository Files
 
-Read [references/repository-files.md](references/repository-files.md). Apply its templates as managed sections, adapted to the repository:
+Read [references/repository-files.md](references/repository-files.md). Its `AGENTS.md` structure is authoritative. Apply it after `setup-matt-pocock-skills` finishes so that delegated setup cannot leave a different structure behind.
 
-1. Create or update root `AGENTS.md`.
+1. Normalize root `AGENTS.md` to the exact heading order and pointer-list structure in the reference.
 2. Create or repair root `WORKLOG.md` with the standard empty headings.
 3. Create `docs/agents/workflow.md`.
 4. Create `docs/architecture/overview.md` and focused architecture documents for important flows that can be verified from the code.
 5. Add one direct pointer for every architecture document to the root `AGENTS.md` architecture section.
 6. Update the relevant architecture document when the setup changes a documented flow.
 7. Add or update the concise `README.md` product description and optional Entire setup section.
+
+Do not paraphrase the required `AGENTS.md` headings. Do not retain Matt Pocock's nested `### Issue tracker`, `### Triage labels`, or `### Domain docs` blocks. Convert their information into the flat pointer list under `## Agent Skills`. Add only pointers to files that exist.
+
+Keep `<add description>` exactly under `## Product Description`. Do not infer, generate, or substitute a product description during setup.
 
 Do not document worktrees, clones, cloud environments, or another parallel execution mechanism. The workflow defines outcomes, not where work runs.
 
@@ -87,13 +91,14 @@ If the user selected `Yes`:
 
 1. Check the current official Entire CLI installation documentation.
 2. Install the stable Entire CLI for the current operating system when `entire` is unavailable.
-3. Run `entire enable` interactively and let Entire's wizard select and configure the agents.
-4. Create or update `docs/agents/session-tracking.md` with repository-specific configuration and privacy notes.
-5. Add its pointer to `AGENTS.md`.
-6. Add CLI installation instructions to `README.md`.
-7. Verify setup with `entire status`.
+3. Tell the user to run `entire enable` in the repository and complete Entire's agent-selection wizard themselves.
+4. Wait for the user to confirm that the wizard finished. Do not continue Entire configuration before confirmation.
+5. Verify the completed setup with `entire status`.
+6. Create or update `docs/agents/session-tracking.md` from the verified configuration.
+7. Add its pointer to `AGENTS.md`.
+8. Add CLI installation instructions to `README.md`.
 
-Do not ask a separate agent-selection question. Do not manually write Entire hook files. Use the Entire CLI wizard. If the environment cannot run it interactively, tell the user to run `entire enable`, then stop the Entire setup until that finishes.
+Never run `entire enable` for the user and never answer its wizard prompts. The human must choose the agents and wizard options. Do not ask a separate agent-selection question and do not manually write Entire hook files.
 
 ## 6. Validate
 
@@ -101,12 +106,17 @@ Check every completion criterion:
 
 - Matt Pocock's setup is complete.
 - Required workflow skills are installed.
+- `AGENTS.md` starts with `# AGENTS.md`, followed by `## Product Description`, and uses the required Lorenz section order.
+- `AGENTS.md` contains `<add description>` exactly under `## Product Description`.
+- `AGENTS.md` uses flat pointer lists under `## Project Context`, `## Agent Workflow`, and `## Agent Skills`.
+- `AGENTS.md` contains no nested Matt Pocock configuration headings.
+- `AGENTS.md` contains no extra headings outside the authoritative structure.
 - `AGENTS.md` points directly to every architecture document.
 - `WORKLOG.md` contains the required headings.
 - `docs/agents/workflow.md` contains integration and work-log rules.
 - `README.md` contains a product description placeholder and adds only the Entire CLI setup when selected.
 - Skills are installed only under `.agents/skills`; no setup-created `agent/skills` remains.
-- Entire is unchanged when declined, or enabled and healthy when selected.
+- Entire is unchanged when declined, or was configured by the human and is healthy when selected.
 - Existing unrelated documentation remains intact.
 
 Report created files, modified files, installed skills, branch changes, and any setup that still requires human authentication. Do not commit unless the user explicitly asks.
