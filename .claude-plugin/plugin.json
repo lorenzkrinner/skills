@@ -11,9 +11,13 @@
   "keywords": [
     "engineering",
     "skills",
-    "planning"
+    "planning",
+    "workflow"
   ],
   "skills": [
-    "./skills/engineering/plan-folder-setup"
+    "./skills/engineering/consolidate",
+    "./skills/engineering/plan-folder-setup",
+    "./skills/engineering/setup-repo",
+    "./skills/engineering/what-next"
   ]
 }

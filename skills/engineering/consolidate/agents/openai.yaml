@@ -1,0 +1,7 @@
+interface:
+  display_name: "Consolidate"
+  short_description: "Preserve durable context before integration"
+  default_prompt: "Use $consolidate to preserve durable context and reset the work log before integration."
+
+policy:
+  allow_implicit_invocation: true
