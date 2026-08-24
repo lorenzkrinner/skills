@@ -91,14 +91,24 @@ If the user selected `Yes`:
 
 1. Check the current official Entire CLI installation documentation.
 2. Install the stable Entire CLI for the current operating system when `entire` is unavailable.
-3. Tell the user to run `entire enable` in the repository and complete Entire's agent-selection wizard themselves.
-4. Wait for the user to confirm that the wizard finished. Do not continue Entire configuration before confirmation.
-5. Verify the completed setup with `entire status`.
-6. Create or update `docs/agents/session-tracking.md` from the verified configuration.
-7. Add its pointer to `AGENTS.md`.
-8. Add CLI installation instructions to `README.md`.
+3. Verify the CLI installation with `entire version`.
+4. Create or update `docs/agents/session-tracking.md` with the deferred enable instructions and privacy notes.
+5. Add its pointer to `AGENTS.md`.
+6. Add CLI installation instructions to `README.md`.
 
-Never run `entire enable` for the user and never answer its wizard prompts. The human must choose the agents and wizard options. Do not ask a separate agent-selection question and do not manually write Entire hook files.
+Never run `entire enable` for the user and never answer its wizard prompts. Do not pause or wait for the user. Finish the complete repository setup first.
+
+When all other setup is complete, end the response with this small block:
+
+````markdown
+**One last step.**
+
+Run this command to set up Entire to your liking:
+
+```bash
+entire enable
+```
+````
 
 ## 6. Validate
 
@@ -117,7 +127,7 @@ Check every completion criterion:
 - `docs/agents/workflow.md` contains integration and work-log rules.
 - `README.md` contains a product description placeholder and adds only the Entire CLI setup when selected.
 - Skills are installed only under `.agents/skills`; no setup-created `agent/skills` remains.
-- Entire is unchanged when declined, or was configured by the human and is healthy when selected.
+- Entire is unchanged when declined, or its CLI is installed and repository enablement is deferred when selected.
 - Existing unrelated documentation remains intact.
 
-Report created files, modified files, installed skills, branch changes, and any setup that still requires human authentication. Do not commit unless the user explicitly asks.
+Report created files, modified files, installed skills, and branch changes. Add the final Entire block when selected. Do not commit unless the user explicitly asks.

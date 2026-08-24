@@ -74,7 +74,7 @@ This repository uses Entire to link agent sessions to Git commits.
 
 ## Setup
 
-Document the repository's enabled agent integrations and committed Entire settings.
+Install the Entire CLI during repository setup. Run `entire enable` after repository setup to choose agent integrations and repository settings through Entire's wizard.
 
 ## Checkpoints
 
@@ -90,7 +90,7 @@ Session transcripts can contain sensitive context. Record whether checkpoints us
 
 ## Verification
 
-Run `entire status` in the active repository.
+Run `entire status` after `entire enable` completes.
 ```
 
 ## `WORKLOG.md`
