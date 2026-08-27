@@ -1,41 +1,63 @@
 ---
 name: finish-issue
-description: Squash-merge the PR, delete the branch, close the issue, and link the PR. Use when finishing delivered ticket work.
+description: Merge a ticket PR, attach it as the GitHub Development closer, and close the issue.
 disable-model-invocation: true
 ---
 
 # Finish Issue
 
-Close out a delivered ticket. Prefer one PR and one issue. Do not start this skill until the work is ready to land.
+Close one GitHub issue with one squash-merged PR. Read `docs/agents/issue-tracker.md`.
 
-## Resolve Targets
+## Terms
 
-Identify:
+**Development** is the GitHub issue sidebar section that lists the PR which closes the issue.
 
-1. The issue number
-2. The pull request number or URL
-3. The head branch name
+## Rules
 
-Infer them from the conversation, the current branch, open PRs for that branch, and issue links in the PR body. Ask only when a target is ambiguous.
+- Prefer one PR and one issue.
+- Put `Closes #<issue>` in the PR body.
+- Also attach the PR as a Development closing reference. A closing keyword is not enough unless the merge target is the default branch.
+- Squash-merge and delete the head branch.
+- Close the issue yourself
 
-Read `docs/agents/issue-tracker.md` or a equivalent file when present for tracker conventions.
+## Closing keywords vs Development
 
-## Preconditions
+`Closes #n` / `Fixes #n` / `Resolves #n` auto-link and auto-close only when the PR merges into the repo default branch (`main` here).
 
-Continue only when all of these hold:
+On a PR into a non-default branch, the keyword is only a mention. It does not fill Development and does not close the issue. Merging that integration branch into `dev`/`main` later is a different PR and does not backfill this one as the closer.
 
-- The PR is open, or already merged
-- CI on the PR head is green, or the user explicitly accepts merging with known failures. If unsure ask the user first
-- The PR base is the intended integration branch
+`addCloseIssueReferences` fills Development for any base. Manually linked PRs still auto-close only on a default-branch merge, so close the issue yourself after a non-default merge.
 
-Stop and report when a precondition fails.
+## Steps
 
-## Finish
+1. Resolve the issue number, PR number/URL, head branch, PR base, and GraphQL node ids (`gh issue view` / `gh pr view --json id`). Stop if more than one PR fits, or if no PR exists (use `create-pr`).
 
-Run these steps in order. Skip a step only when its completion criterion is already true.
+2. Ship only if the PR is open or already merged, not a draft, checks are green (or the user accepts failures, ask first if CI failed), and the base is the intended integration branch. Do not retarget it.
 
-1. **Link issue to PR.** Ensure the PR body names the issue with a closing keyword such as `Closes #<n>` or `Fixes #<n>`. Edit the PR body when the keyword is missing.
-2. **Link PR to issue** Link the PR to the issue
-3. **Squash-merge.** If the PR is still open, squash-merge it:
+3. Append `Closes #<issue>` to the PR. Keep the rest of the body.
+
+4. List the PR:
+
    ```bash
-   gh pr merge <pr> --squash --delete-branch
+   ISSUE_ID="$(gh issue view <issue> --json id --jq .id)"
+   PR_ID="$(gh pr view <pr> --json id --jq .id)"
+   gh api graphql -f query='mutation($issueId:ID!, $prId:ID!) {
+     addCloseIssueReferences(input: {issueId: $issueId, pullRequestIds: [$prId]}) {
+       issue { closedByPullRequestsReferences(first: 10, includeClosedPrs: true) { nodes { number url } } }
+     }
+   }' -f issueId="$ISSUE_ID" -f prId="$PR_ID"
+   ```
+
+   Use the GraphQL `id`, not the numeric database id. Repeat once per issue if several issues share the PR. Confirm the PR number is in `closedByPullRequestsReferences`.
+
+5. Squash-merge the PR: `gh pr merge <pr> --squash --delete-branch`. On `403`, give the user that exact command and wait. After they confirm the merge, continue.
+
+6. Close the issue: `gh issue close <issue> --comment "Shipped in <pr-url>."` This is expected when the merge target is not `main`.
+
+7. Delete the branch `git push origin --delete <head-branch>`. Delete only the PR head. Leave `main`, `dev`, and long-lived integration branches.
+
+On any write `403` (merge, GraphQL, close, delete), give the exact command and wait. Do not retry `403`. Do not open a second PR or issue to finish the first pair.
+
+## Report
+
+Issue closed, PR merged, Development shows this PR, whether you closed the issue yourself, branch deleted, any command the user had to run.
