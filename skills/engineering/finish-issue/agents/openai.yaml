@@ -1,0 +1,7 @@
+interface:
+  display_name: "Finish Issue"
+  short_description: "Merge a ticket PR and close the issue"
+  default_prompt: "Use $finish-issue to merge the ticket PR, attach it as the GitHub Development closer, and close the issue."
+
+policy:
+  allow_implicit_invocation: false

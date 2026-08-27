@@ -4,4 +4,4 @@ interface:
   default_prompt: "Use $consolidate to preserve durable context and reset the work log before integration."
 
 policy:
-  allow_implicit_invocation: true
+  allow_implicit_invocation: false
