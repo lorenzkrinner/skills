@@ -1,6 +1,7 @@
 ---
 name: consolidate
 description: Preserve durable implementation context and reset WORKLOG.md. Use before integrating completed work.
+disable-model-invocation: true
 ---
 
 # Consolidate

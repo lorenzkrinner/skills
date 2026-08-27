@@ -1,6 +1,7 @@
 ---
 name: plan-folder-setup
 description: Create or maintain repository plan folders under plans/<slug>/ with a plan.md, optional plan.html review artifact, and implementation-details.md decision log. Use when a user asks to create a plan, planning directory, implementation notes, reviewable plan HTML, or to document agent plan structure.
+disable-model-invocation: true
 ---
 
 # Plan Folder Setup

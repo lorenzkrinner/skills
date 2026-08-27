@@ -1,4 +1,7 @@
-display_name: Plan Folder Setup
-short_description: Standard repo plan folders
-default_prompt: Create or update a repository plan folder using the standard plans/<slug>/ structure.
+interface:
+  display_name: "Plan Folder Setup"
+  short_description: "Standard repo plan folders"
+  default_prompt: "Use $plan-folder-setup to create or update a repository plan folder using the standard plans/<slug>/ structure."
 
+policy:
+  allow_implicit_invocation: false
