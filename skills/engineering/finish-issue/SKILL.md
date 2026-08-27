@@ -30,13 +30,19 @@ On a PR into a non-default branch, the keyword is only a mention. It does not fi
 
 ## Steps
 
-1. Resolve the issue number, PR number/URL, head branch, PR base, and GraphQL node ids (`gh issue view` / `gh pr view --json id`). Stop if more than one PR fits, or if no PR exists (use `create-pr`).
+1. Review gate. A **change-turn** is a conversation turn that changed the repository. Take the last two change-turns as the **window**. If fewer than two exist, the window is those.
 
-2. Ship only if the PR is open or already merged, not a draft, checks are green (or the user accepts failures, ask first if CI failed), and the base is the intended integration branch. Do not retarget it.
+   Continue to step 2 only if the window has at least one change-turn and every change-turn in it already has a `/code-review` that returned with no findings.
 
-3. Append `Closes #<issue>` to the PR. Keep the rest of the body.
+   Otherwise run `/code-review` now, the same way `/implement` does. If it reports a finding, report the findings and stop. If it reports none, continue to step 2.
 
-4. List the PR:
+2. Resolve the issue number, PR number/URL, head branch, PR base, and GraphQL node ids (`gh issue view` / `gh pr view --json id`). Stop if more than one PR fits, or if no PR exists (use `create-pr`).
+
+3. Ship only if the PR is open or already merged, not a draft, checks are green (or the user accepts failures, ask first if CI failed), and the base is the intended integration branch. Do not retarget it.
+
+4. Append `Closes #<issue>` to the PR. Keep the rest of the body.
+
+5. List the PR:
 
    ```bash
    ISSUE_ID="$(gh issue view <issue> --json id --jq .id)"
@@ -50,11 +56,11 @@ On a PR into a non-default branch, the keyword is only a mention. It does not fi
 
    Use the GraphQL `id`, not the numeric database id. Repeat once per issue if several issues share the PR. Confirm the PR number is in `closedByPullRequestsReferences`.
 
-5. Squash-merge the PR: `gh pr merge <pr> --squash --delete-branch`. On `403`, give the user that exact command and wait. After they confirm the merge, continue.
+6. Squash-merge the PR: `gh pr merge <pr> --squash --delete-branch`. On `403`, give the user that exact command and wait. After they confirm the merge, continue.
 
-6. Close the issue: `gh issue close <issue> --comment "Shipped in <pr-url>."` This is expected when the merge target is not `main`.
+7. Close the issue: `gh issue close <issue> --comment "Shipped in <pr-url>."` This is expected when the merge target is not `main`.
 
-7. Delete the branch `git push origin --delete <head-branch>`. Delete only the PR head. Leave `main`, `dev`, and long-lived integration branches.
+8. Delete the branch `git push origin --delete <head-branch>`. Delete only the PR head. Leave `main`, `dev`, and long-lived integration branches.
 
 On any write `403` (merge, GraphQL, close, delete), give the exact command and wait. Do not retry `403`. Do not open a second PR or issue to finish the first pair.
 
