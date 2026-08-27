@@ -1,18 +1,45 @@
 # Repository Files
 
-Use these as managed structures. Preserve unrelated content in files other than root `AGENTS.md`. Do not add a pointer for a file that does not exist.
+Use these as managed structures. Preserve unrelated content in files other than root `AGENTS.md` unless the user approved a move or drop. Do not add a pointer for a file that does not exist.
 
 ## `AGENTS.md`
 
-This complete file structure is authoritative. Use the exact title, heading names, heading order, prose, and flat pointer-list shape below. Replace root `AGENTS.md` after Matt Pocock's setup finishes. Do not preserve extra or nested headings.
+The Lorenz skeleton below is required. It is a merge floor, not a full-file overwrite.
 
-The only variable content is:
+Required order at the top:
 
+1. `# AGENTS.md`
+2. `## Product Description`
+3. `## Workflow`
+4. `## Work Log`
+5. `## Sources of Truth` with `### Architecture`, `### Product Context`, and `### Agent Workflow`
+
+After that skeleton, keep user-approved project sections from the old file. Do not retain Matt Pocock's nested `## Agent skills` block; convert it into Sources of Truth pointers.
+
+Variable content:
+
+- Product description text (existing repo text when available; otherwise `<add description>`)
+- Integration-branch name in Workflow bullets (`<integration-branch>`)
 - Architecture pointer bullets for verified architecture documents
 - Pointers for agent files that actually exist
 - The optional Entire pointer
+- Kept project sections after the skeleton
 
-Keep `<add description>` exactly. Product description work happens after repository setup.
+### Product description
+
+Prefer existing product text from root `AGENTS.md`, `README.md`, or `CONTEXT.md`. Use `<add description>` only when none exists. Never replace known product text with a placeholder.
+
+### Orphan checklist and approval
+
+Before writing:
+
+1. Inventory old `AGENTS.md` headings and durable blocks.
+2. Mark each as keep, move (with path), or drop (user-approved only).
+3. If the old file was non-empty, show the full final draft in a fenced code block and wait for approval.
+
+### Skeleton
+
+Replace `<integration-branch>` with the chosen branch name (`dev`, `development`, `testing`, or another name this repo uses).
 
 ```markdown
 # AGENTS.md
@@ -24,8 +51,8 @@ Keep `<add description>` exactly. Product description work happens after reposit
 ## Workflow
 
 - Use tickets as the source of truth for planned work.
-- Merge ticket branches into `development`.
-- Merge `development` into `main` only after tests and live verification pass.
+- Merge ticket branches into `<integration-branch>`.
+- Merge `<integration-branch>` into `main` only after tests and live verification pass.
 - Use the `consolidate` skill before integration.
 
 ## Work Log
@@ -111,6 +138,8 @@ Run `entire status` after `entire enable` completes.
 
 ## `docs/agents/workflow.md`
 
+Replace `<integration-branch>` with the chosen branch name.
+
 ```markdown
 # Delivery Workflow
 
@@ -120,7 +149,7 @@ Use tickets as the source of truth for planned work. Claim a ticket before imple
 
 ## Integration
 
-Merge ticket branches into `development`. Merge `development` into `main` only after tests and live verification pass.
+Merge ticket branches into `<integration-branch>`. Merge `<integration-branch>` into `main` only after tests and live verification pass.
 
 Run the `consolidate` skill before integration.
 
@@ -141,7 +170,9 @@ Update the relevant file under `docs/architecture/` when a change affects a docu
 
 ## Architecture
 
-Create `docs/architecture/overview.md` as a concise map:
+Prefer moving existing architecture docs into `docs/architecture/` over creating duplicates. Update live references after a move.
+
+Create `docs/architecture/overview.md` as a concise map when no overview exists yet:
 
 ```markdown
 # Architecture Overview
@@ -187,7 +218,7 @@ Architecture documents describe the current system. ADRs explain why durable dec
 
 ## `README.md`
 
-Preserve useful existing product and setup content. Add missing managed sections without copying architecture or workflow documentation into the README:
+Preserve useful existing product and setup content. Fill `## Product Description` from existing product text when present. Use `<add description>` only when none exists. Add missing managed sections without copying architecture or workflow documentation into the README:
 
 ````markdown
 # README.md
@@ -202,7 +233,15 @@ Preserve useful existing product and setup content. Add missing managed sections
 
 This repository uses Entire for agent session tracking. Install the stable CLI before working with an agent.
 
-On macOS or Linux:
+On macOS:
+
+```bash
+brew tap entireio/tap
+brew trust entireio/tap
+brew install --cask entire
+```
+
+On Linux:
 
 ```bash
 curl -fsSL https://entire.io/install.sh | bash
