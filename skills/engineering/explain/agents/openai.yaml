@@ -1,0 +1,7 @@
+interface:
+  display_name: "Explain"
+  short_description: "Explain a GitHub issue in plain language"
+  default_prompt: "Use $explain to explain the given issue in plain language."
+
+policy:
+  allow_implicit_invocation: false

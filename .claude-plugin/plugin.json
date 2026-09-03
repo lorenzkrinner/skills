@@ -16,6 +16,7 @@
   ],
   "skills": [
     "./skills/engineering/consolidate",
+    "./skills/engineering/explain",
     "./skills/engineering/plan-folder-setup",
     "./skills/engineering/setup-lorenz-krinner-skills",
     "./skills/engineering/what-next"
