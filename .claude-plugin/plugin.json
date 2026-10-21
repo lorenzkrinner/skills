@@ -15,6 +15,7 @@
     "workflow"
   ],
   "skills": [
+    "./skills/engineering/commit",
     "./skills/engineering/consolidate",
     "./skills/engineering/explain",
     "./skills/engineering/plan-folder-setup",

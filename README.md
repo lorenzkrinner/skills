@@ -8,6 +8,7 @@ Personal agent skills.
 
 ### Engineering
 
+- [`commit`](./skills/engineering/commit/SKILL.md) — Commit changes to git.
 - [`consolidate`](./skills/engineering/consolidate/SKILL.md) — Preserve durable implementation context and reset `WORKLOG.md` before integration.
 - [`explain`](./skills/engineering/explain/SKILL.md) — Explain a GitHub issue in plain language.
 - [`plan-folder-setup`](./skills/engineering/plan-folder-setup/SKILL.md) — Create or maintain durable repository plan folders under `plans/<slug>/`.

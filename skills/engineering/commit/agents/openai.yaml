@@ -1,0 +1,7 @@
+interface:
+  display_name: "Commit"
+  short_description: "Commit changes to git"
+  default_prompt: "Use $commit when committing changes to git."
+
+policy:
+  allow_implicit_invocation: false
