@@ -1,7 +1,7 @@
 interface:
   display_name: "Commit"
-  short_description: "Commit changes to git"
-  default_prompt: "Use $commit when committing changes to git."
+  short_description: "Create focused git commits. Use when committing changes."
+  default_prompt: "Use $commit to create focused git commits."
 
 policy:
   allow_implicit_invocation: false
