@@ -100,6 +100,7 @@ up to 3 attempts before failing.
 
 Fixes #234
 ```
+For more examples, anti-patterns, and a commit template, see references/commit-examples.md.
 
 ## Do not
 - Write session handoffs, recaps, or status reports.
