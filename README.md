@@ -8,7 +8,7 @@ Personal agent skills.
 
 ### Engineering
 
-- [`commit`](./skills/engineering/commit/SKILL.md) — Commit changes to git.
+- [`commit`](./skills/engineering/commit/SKILL.md) — Create focused git commits. Use when committing changes.
 - [`consolidate`](./skills/engineering/consolidate/SKILL.md) — Preserve durable implementation context and reset `WORKLOG.md` before integration.
 - [`explain`](./skills/engineering/explain/SKILL.md) — Explain a GitHub issue in plain language.
 - [`finish-issue`](./skills/engineering/finish-issue/SKILL.md) — Merge a ticket PR, attach it as the GitHub Development closer, and close the issue.
